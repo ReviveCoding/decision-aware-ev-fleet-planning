@@ -1,8 +1,32 @@
 # Decision-Aware EV Fleet Planning, Depot Charging & Reliability Digital Twin
+[![CI](https://github.com/ReviveCoding/decision-aware-ev-fleet-planning/actions/workflows/ci.yml/badge.svg?branch=main)](https://github.com/ReviveCoding/decision-aware-ev-fleet-planning/actions/workflows/ci.yml)
+
 
 A fully runnable, offline decision system for EV fleet allocation, depot charging, rolling redeployment, stochastic optimization, and reliability-aware release decisions.
 
 The repository is designed as portfolio evidence for Fleet Planning, Operations Research, Decision Science, Applied Scientist, and Data Scientist roles. It begins with statistical and business baselines, promotes advanced methods only when they improve decision evidence, and prevents nominal MILP feasibility from being mistaken for operational reliability.
+
+## System architecture
+
+```mermaid
+flowchart LR
+    A["Public route and depot profiles"] --> B["Validated data contracts and SQLite marts"]
+    B --> C["Forecasting: baselines plus optional Transformer"]
+    C --> D["Calibration-gated champion selection"]
+
+    D --> E["Deterministic and stochastic fleet-planning MILPs"]
+    E --> F["Common-random-number replay, VSS, and EVPI analysis"]
+    F --> G{"RCCE reliability gate"}
+
+    G -->|RELEASE| H["Recommended fleet and charging plan"]
+    G -->|REVIEW| I["Human approval required"]
+    G -->|BLOCK| J["Corrective capacity frontier"]
+
+    J --> K["Independent replay and validation"]
+    K --> G
+
+    H --> L["Signed artifacts, planner API, dashboard, and executive memo"]
+```
 
 ## End-to-end pipeline
 
@@ -69,6 +93,30 @@ The **Reliability-Calibrated Capacity Envelope, RCCE** evaluates a plan as a vec
 - solver degradation status
 
 A solver-feasible plan may still be `REVIEW` or `BLOCK`. Corrective candidates are independently replayed and gated again before any automatic release.
+
+## Reliability-gated decision flow
+
+```mermaid
+flowchart TD
+    A["Candidate fleet and charging plan"] --> B["Solver diagnostics"]
+    A --> C["Physical energy and range feasibility"]
+    A --> D["Depot charging and parking feasibility"]
+    A --> E["Service and critical-route coverage"]
+    A --> F["Shortage CVaR, overcapacity cost, allocation churn, and replay consistency"]
+
+    B --> G{"RCCE decision"}
+    C --> G
+    D --> G
+    E --> G
+    F --> G
+
+    G -->|RELEASE| H["Publish recommendation and signed artifacts"]
+    G -->|REVIEW| I["Require human approval"]
+    G -->|BLOCK| J["Generate corrective temporary-capacity candidates"]
+
+    J --> K["Independent replay and contract validation"]
+    K --> G
+```
 
 ## Current v0.7.1rc4 smoke result
 
@@ -222,6 +270,8 @@ pip install -e ".[gpu]"
 ev-fleet run --config configs/gpu-smoke.yaml
 
 # Transactional GPU path: reruns the complete pipeline and refreshes manifests
+[![CI](https://github.com/ReviveCoding/decision-aware-ev-fleet-planning/actions/workflows/ci.yml/badge.svg?branch=main)](https://github.com/ReviveCoding/decision-aware-ev-fleet-planning/actions/workflows/ci.yml)
+
 ev-fleet train-gpu --config configs/full.yaml
 ```
 
