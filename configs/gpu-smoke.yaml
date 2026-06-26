@@ -1,0 +1,77 @@
+seed: 42
+mode: gpu-smoke
+paths:
+  generated_data: data/generated-gpu-smoke
+  artifacts: artifacts-gpu-smoke
+  public_calibration: data/public_calibration
+  database: artifacts-gpu-smoke/fleet_planning.sqlite
+history:
+  days: 70
+  stations: 3
+forecast:
+  calibration_days: 14
+  p90_target_coverage: 0.90
+  test_days: 14
+  min_p90_coverage: 0.7
+  decision_reserve_quantile_weight: 0.5
+  use_lightgbm: false
+  use_torch_challenger: true
+  torch_epochs: 1
+  sequence_length: 14
+optimization:
+  scenarios: 3
+  evaluation_scenarios: 6
+  value_evaluation_scenarios: 3
+  evpi_scenarios: 1
+  rolling_evaluation_scenarios: 3
+  cvar_alpha: 0.9
+  risk_weight: 0.35
+  mip_time_limit_seconds: 5
+  mip_relative_gap: 0.03
+  emergency_lease_cost: 450.0
+  max_emergency_leases_per_station: 3
+  unserved_cost: 1200.0
+  critical_multiplier: 3.0
+  charging_overage_cost: 12.0
+  charge_efficiency: 0.92
+  redeployment_cost: 90.0
+  temporary_charging_capacity_cost_per_kwh: 2.0
+  route_split_program_cost: 600.0
+simulation:
+  idle_vehicle_cost: 85.0
+  runs: 120
+  energy_sigma: 0.12
+  failure_probability: 0.025
+  charger_outage_probability: 0.06
+  emergency_lease_fulfillment_probability: 0.85
+  same_day_repair_success_probability: 0.55
+  individual_charge_taper_factor: 0.9
+  charge_efficiency_mean: 0.91
+  charge_efficiency_sigma: 0.015
+  minimum_charge_efficiency: 0.82
+  late_return_sigma_minutes: 28.0
+  route_split_distance_overhead: 0.1
+reliability:
+  service_coverage_lcb: 0.92
+  critical_coverage_lcb: 0.96
+  energy_feasibility_lcb: 0.9
+  charging_feasibility_lcb: 0.88
+  max_shortage_cvar: 3.5
+  max_overcapacity_cost: 5000.0
+  max_churn: 12
+  max_solver_mip_gap: 0.05
+  max_solver_constraint_violation: 1.0e-6
+  max_solver_integrality_violation: 1.0e-6
+  max_solver_objective_error: 1.0e-6
+  corrective_shortage_quantiles:
+  - 0.75
+  - 0.9
+  - 0.95
+  corrective_max_rounds: 3
+  max_temporary_charging_capacity_kwh_per_station: 800.0
+  corrective_charging_overage_quantile: 0.975
+saa:
+  scenario_sizes:
+  - 2
+  - 3
+  replications: 2

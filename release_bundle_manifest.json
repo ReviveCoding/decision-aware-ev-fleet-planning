@@ -1,0 +1,22 @@
+{
+  "schema_version": "1.1",
+  "project_name": "decision-aware-ev-fleet-planning",
+  "qualified_version": "0.7.1rc4",
+  "source_fingerprint_excluding_qualification_manifests": "874ad075572fcb72ab6b3a1b4787dc3c720e6ba09fff00ab183065b4c82a7cd9",
+  "source_file_count_excluding_qualification_manifests": 103,
+  "bundle_hashes_recorded_externally": true,
+  "installation_command": "python -m pip install -c constraints/runtime.txt .",
+  "wheel_install_command": "python -m pip install -c constraints/runtime.txt decision_aware_ev_fleet_planning-0.7.1rc4-py3-none-any.whl",
+  "small_experiment_command": "ev-fleet run --config configs/smoke.yaml && ev-fleet validate --config configs/smoke.yaml",
+  "qualification_command": "python scripts/qualify_local.py --timeout-seconds 300 --output qualification_local_summary.json",
+  "supported_runtime": "Python >=3.11,<3.14; CPU base path; GPU optional via torch extra",
+  "data_requirements": "bundled deterministic synthetic fixture; optional public calibration inputs not bundled",
+  "unsupported_environment": [
+    "GitHub-hosted runner not executed in this environment",
+    "Docker not executed in this environment",
+    "CUDA hardware path not executed in this environment"
+  ],
+  "extraction_smoke_result": "PASS",
+  "wheel_external_smoke_result": "PASS",
+  "canonical_diff_sha256": "841431ccc4aad30dab1c9cbfe16d0a04b95b28fd99a81f6005b66694f2cb20b5"
+}

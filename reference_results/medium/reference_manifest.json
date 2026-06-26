@@ -1,0 +1,67 @@
+{
+  "profile": "medium",
+  "config": "medium.yaml",
+  "claim_boundary": "offline public-data-informed synthetic reference run",
+  "files": [
+    {
+      "path": "run_summary.json",
+      "size_bytes": 4076,
+      "sha256": "685d6bbb0ed52a94d85c3522a06262030db70c8a567615e5851e0b12f28e81e8"
+    },
+    {
+      "path": "forecast_model_comparison.csv",
+      "size_bytes": 1275,
+      "sha256": "613d3b38ae8403922e5737b3f57b80c4aa5f472f6c33bba3ab08308d753e3890"
+    },
+    {
+      "path": "base_policy_selection.csv",
+      "size_bytes": 337,
+      "sha256": "a20a89604aea87d0febe2c9efbb12508b70eb208ae61fa7241cbf19d1aca2983"
+    },
+    {
+      "path": "stochastic_value.json",
+      "size_bytes": 1606,
+      "sha256": "1ce4ea6f5cbc240abb1008a459c8090045d61db45d75c4f59f6bb3959add2962"
+    },
+    {
+      "path": "paired_policy_comparison.csv",
+      "size_bytes": 773,
+      "sha256": "6a95294ac191adff0680946cdad5aedd054e2f6ac3231c6860170e613dd53ed7"
+    },
+    {
+      "path": "corrective_frontier.csv",
+      "size_bytes": 1483,
+      "sha256": "dcd90c6d7c3d765daaa541e66ed5b109c9155bfed85a2230b7147436e9239b07"
+    },
+    {
+      "path": "recommended_plan.json",
+      "size_bytes": 5180,
+      "sha256": "d67dde5d1f31cce5d26eb735515ef99d34d8c028284ef5b65712b0c943759e91"
+    },
+    {
+      "path": "recommended_rcce.json",
+      "size_bytes": 3128,
+      "sha256": "d6e6df32555776b50e9f3296eb9fd26c6b71b7d24a8c4b1f88ea0d8e8e201718"
+    },
+    {
+      "path": "saa_summary.json",
+      "size_bytes": 497,
+      "sha256": "56d57bc22cf327bceba93268a220bc3fe815641f801d8f17a50c0751d492710f"
+    },
+    {
+      "path": "reports/executive_decision_memo.md",
+      "size_bytes": 4532,
+      "sha256": "2ff915bf28801734290049aa98cd2253881250989ab8f2dee7def57b91388f71"
+    },
+    {
+      "path": "reports/model_and_optimization_card.md",
+      "size_bytes": 6600,
+      "sha256": "2d40aa45045686295942e26f14352bc2b13e08734c085149fd07d1667b886e45"
+    },
+    {
+      "path": "reports/limitations.md",
+      "size_bytes": 1144,
+      "sha256": "2de92df63c40277fb7460b7410198975c3887947f81e1efe1e1b48828cb6ac00"
+    }
+  ]
+}

@@ -1,0 +1,4 @@
+policy,status,failed_checks,mean_realized_total_cost,shortage_cvar95,service_coverage_lcb,selected
+deterministic,BLOCK,2,16767.6722019193,7.9375,0.9686977930811895,True
+risk_neutral,BLOCK,2,16642.610849374654,8.785714285714286,0.9726882068783586,False
+risk_aware,BLOCK,2,16735.471603541322,8.785714285714286,0.9726882068783586,False

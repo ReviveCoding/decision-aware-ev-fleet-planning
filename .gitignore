@@ -1,0 +1,41 @@
+__pycache__/
+*.py[cod]
+*.egg-info/
+.venv/
+.pytest_cache/
+.ruff_cache/
+build/
+dist/
+artifacts/*
+!artifacts/.gitkeep
+data/generated/*
+!data/generated/.gitkeep
+*.sqlite
+*.sqlite.tmp
+artifacts-medium/
+data/generated-medium/
+artifacts-full/
+data/generated-full/
+data/public_calibration/
+.ev_fleet_locks/
+.ev_fleet_staging/
+.ev_fleet_backups/
+artifacts-gpu-smoke/
+data/generated-gpu-smoke/
+.coverage/
+.coverage
+htmlcov/
+# Local Python environments and generated build outputs
+.venv-ci/
+# Runtime outputs
+# Local benchmark and machine-specific outputs
+ML_Outputs/
+*.db
+*.pt
+*.pth
+*.ckpt
+*.onnx
+*.parquet
+*.zip
+*.7z
+

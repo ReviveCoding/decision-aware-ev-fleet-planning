@@ -1,0 +1,72 @@
+seed: 42
+mode: medium
+paths:
+  generated_data: data/generated-medium
+  artifacts: artifacts-medium
+  public_calibration: data/public_calibration
+  database: artifacts-medium/fleet_planning.sqlite
+history:
+  days: 150
+  stations: 5
+forecast:
+  calibration_days: 14
+  p90_target_coverage: 0.90
+  test_days: 28
+  min_p90_coverage: 0.80
+  decision_reserve_quantile_weight: 0.50
+  use_lightgbm: false
+  use_torch_challenger: false
+  torch_epochs: 10
+  sequence_length: 21
+optimization:
+  scenarios: 5
+  evaluation_scenarios: 12
+  value_evaluation_scenarios: 5
+  evpi_scenarios: 2
+  rolling_evaluation_scenarios: 6
+  cvar_alpha: 0.95
+  risk_weight: 0.45
+  mip_time_limit_seconds: 30
+  mip_relative_gap: 0.03
+  emergency_lease_cost: 450.0
+  max_emergency_leases_per_station: 3
+  unserved_cost: 1200.0
+  critical_multiplier: 3.0
+  charging_overage_cost: 12.0
+  charge_efficiency: 0.92
+  redeployment_cost: 90.0
+  temporary_charging_capacity_cost_per_kwh: 2.0
+  route_split_program_cost: 600.0
+simulation:
+  idle_vehicle_cost: 85.0
+  runs: 240
+  energy_sigma: 0.12
+  failure_probability: 0.025
+  charger_outage_probability: 0.06
+  emergency_lease_fulfillment_probability: 0.85
+  same_day_repair_success_probability: 0.55
+  individual_charge_taper_factor: 0.90
+  charge_efficiency_mean: 0.91
+  charge_efficiency_sigma: 0.015
+  minimum_charge_efficiency: 0.82
+  late_return_sigma_minutes: 28.0
+  route_split_distance_overhead: 0.10
+reliability:
+  service_coverage_lcb: 0.94
+  critical_coverage_lcb: 0.97
+  energy_feasibility_lcb: 0.93
+  charging_feasibility_lcb: 0.91
+  max_shortage_cvar: 3.0
+  max_overcapacity_cost: 12000.0
+  max_churn: 25
+  max_solver_mip_gap: 0.05
+  max_solver_constraint_violation: 1.0e-6
+  max_solver_integrality_violation: 1.0e-6
+  max_solver_objective_error: 1.0e-6
+  corrective_shortage_quantiles: [0.75, 0.90, 0.95]
+  corrective_max_rounds: 3
+  max_temporary_charging_capacity_kwh_per_station: 1200.0
+  corrective_charging_overage_quantile: 0.975
+saa:
+  scenario_sizes: [3, 5]
+  replications: 2

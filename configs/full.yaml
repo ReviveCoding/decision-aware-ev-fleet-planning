@@ -1,0 +1,69 @@
+seed: 42
+mode: full
+paths:
+  generated_data: data/generated-full
+  artifacts: artifacts-full
+  public_calibration: data/public_calibration
+  database: artifacts-full/fleet_planning.sqlite
+history:
+  days: 365
+  stations: 8
+forecast:
+  calibration_days: 14
+  p90_target_coverage: 0.90
+  test_days: 42
+  min_p90_coverage: 0.85
+  decision_reserve_quantile_weight: 0.50
+  use_lightgbm: true
+  use_torch_challenger: true
+  torch_epochs: 40
+  sequence_length: 28
+optimization:
+  scenarios: 40
+  evaluation_scenarios: 200
+  value_evaluation_scenarios: 20
+  evpi_scenarios: 20
+  rolling_evaluation_scenarios: 40
+  cvar_alpha: 0.95
+  risk_weight: 0.55
+  mip_time_limit_seconds: 300
+  mip_relative_gap: 0.02
+  emergency_lease_cost: 450.0
+  max_emergency_leases_per_station: 3
+  unserved_cost: 1200.0
+  critical_multiplier: 3.0
+  charging_overage_cost: 12.0
+  charge_efficiency: 0.92
+  redeployment_cost: 90.0
+  temporary_charging_capacity_cost_per_kwh: 2.0
+  route_split_program_cost: 600.0
+simulation:
+  idle_vehicle_cost: 85.0
+  runs: 3000
+  energy_sigma: 0.12
+  failure_probability: 0.025
+  charger_outage_probability: 0.06
+  emergency_lease_fulfillment_probability: 0.85
+  same_day_repair_success_probability: 0.55
+  individual_charge_taper_factor: 0.90
+  charge_efficiency_mean: 0.91
+  charge_efficiency_sigma: 0.015
+  minimum_charge_efficiency: 0.82
+  late_return_sigma_minutes: 28.0
+  route_split_distance_overhead: 0.10
+reliability:
+  service_coverage_lcb: 0.95
+  critical_coverage_lcb: 0.98
+  energy_feasibility_lcb: 0.95
+  charging_feasibility_lcb: 0.93
+  max_shortage_cvar: 2.0
+  max_overcapacity_cost: 20000.0
+  max_churn: 40
+  max_solver_mip_gap: 0.03
+  corrective_shortage_quantiles: [0.75, 0.90, 0.95]
+  corrective_max_rounds: 4
+  max_temporary_charging_capacity_kwh_per_station: 1800.0
+  corrective_charging_overage_quantile: 0.99
+saa:
+  scenario_sizes: [10, 25, 50, 100]
+  replications: 5

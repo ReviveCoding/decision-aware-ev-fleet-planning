@@ -1,0 +1,14 @@
+# Direct dependency constraints validated by the repository's smoke, test, and wheel-install checks.
+# GitHub Actions revalidates this set on supported Python versions and operating systems.
+numpy==2.3.5
+pandas==2.2.3
+scipy==1.17.0
+scikit-learn==1.8.0
+PyYAML==6.0.3
+pydantic==2.13.4
+fastapi==0.128.2
+uvicorn==0.48.0
+pytest==9.0.2
+httpx==0.28.1
+build==1.5.0
+ruff==0.15.17

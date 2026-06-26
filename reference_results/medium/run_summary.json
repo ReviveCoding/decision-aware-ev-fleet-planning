@@ -1,0 +1,122 @@
+{
+  "run_id": "f20005f77a2845708d31e719edcf728a",
+  "pipeline_status": "PASS",
+  "selected_forecast_model": "poisson",
+  "gpu_challenger": {
+    "status": "SKIPPED",
+    "reason": "disabled by configuration"
+  },
+  "deterministic_plan_status": "OPTIMAL",
+  "risk_neutral_plan_status": "OPTIMAL",
+  "stochastic_plan_status": "OPTIMAL",
+  "rolling_plan_status": "OPTIMAL",
+  "deterministic_rcce": "BLOCK",
+  "risk_neutral_rcce": "BLOCK",
+  "stochastic_rcce": "BLOCK",
+  "selected_base_policy": "deterministic",
+  "corrective_rcce": "RELEASE",
+  "corrective_triggered": true,
+  "recommended_rcce": "RELEASE",
+  "automatic_release_allowed": true,
+  "recommendation_source": "corrective_capacity_candidate",
+  "solver_diagnostics": {
+    "deterministic": {
+      "termination_class": "OPTIMAL",
+      "status_code": 0,
+      "mip_gap": 0.0,
+      "mip_dual_bound": 4338.680868000003,
+      "max_bound_violation": 0.0,
+      "max_constraint_violation": 0.0,
+      "max_integrality_violation": 0.0,
+      "objective_reconciliation_error": 0.0,
+      "fallback_used": null
+    },
+    "risk_neutral": {
+      "termination_class": "OPTIMAL",
+      "status_code": 0,
+      "mip_gap": 0.0,
+      "mip_dual_bound": 6111.232800000002,
+      "max_bound_violation": 0.0,
+      "max_constraint_violation": 1.8189894035458565e-12,
+      "max_integrality_violation": 0.0,
+      "objective_reconciliation_error": 1.4882344226404339e-16,
+      "fallback_used": null
+    },
+    "risk_aware": {
+      "termination_class": "OPTIMAL",
+      "status_code": 0,
+      "mip_gap": 0.0,
+      "mip_dual_bound": 9257.36686800002,
+      "max_bound_violation": 0.0,
+      "max_constraint_violation": 4.085620730620576e-14,
+      "max_integrality_violation": 1.6076029396572267e-13,
+      "objective_reconciliation_error": 0.0,
+      "fallback_used": null
+    },
+    "rolling": {
+      "termination_class": "OPTIMAL",
+      "status_code": 0,
+      "mip_gap": 0.011347731889559325,
+      "mip_dual_bound": 23735.959607369754,
+      "max_bound_violation": 0.0,
+      "max_constraint_violation": 4.547473508864641e-13,
+      "max_integrality_violation": 0.0,
+      "objective_reconciliation_error": 0.0,
+      "fallback_used": null
+    },
+    "recommended": {
+      "termination_class": "OPTIMAL",
+      "status_code": 0,
+      "mip_gap": 0.0,
+      "mip_dual_bound": 4338.680868000003,
+      "max_bound_violation": 0.0,
+      "max_constraint_violation": 0.0,
+      "max_integrality_violation": 0.0,
+      "objective_reconciliation_error": 0.0,
+      "fallback_used": null
+    }
+  },
+  "formal_sample_vss": 1137.5933999999997,
+  "formal_sample_evpi": 1678.7619359999999,
+  "heldout_empirical_vss": -69.32879999999932,
+  "rolling_expected_cost_savings": 2573.3224686956582,
+  "data_contract": {
+    "vehicle_types": 3,
+    "stations": 5,
+    "fleet_rows": 15,
+    "history_rows": 750
+  },
+  "optimization_scenario_contract": {
+    "scenarios": 5,
+    "routes": 519
+  },
+  "evaluation_scenario_contract": {
+    "scenarios": 12,
+    "routes": 1136
+  },
+  "stage_seconds": {
+    "data_generation_and_contracts": 0.133279,
+    "forecasting": 3.447119,
+    "scenario_generation": 0.13694,
+    "optimization": 4.421705,
+    "paired_simulation_and_rcce": 8.269246,
+    "rolling_reoptimization": 1.802364,
+    "saa": 4.638112,
+    "reporting": 0.042019
+  },
+  "environment": {
+    "python": "3.11.9",
+    "platform": "Windows-10-10.0.26200-SP0",
+    "packages": {
+      "decision-aware-ev-fleet-planning": "0.7.1rc4",
+      "installed-distribution-version": "0.7.1rc4",
+      "numpy": "2.3.5",
+      "pandas": "2.2.3",
+      "scipy": "1.17.0",
+      "scikit-learn": "1.8.0"
+    },
+    "config_path": "C:\\Users\\bjw-0\\Downloads\\Amazon04_decision-aware-ev-fleet-planning\\configs\\medium.yaml",
+    "config_sha256": "bff048f1e0d2929d360b28e98a2ce77ba360bf035e436f26e6596c33c1c5c87e"
+  },
+  "artifacts_dir": "C:\\Users\\bjw-0\\Downloads\\Amazon04_decision-aware-ev-fleet-planning\\artifacts-medium"
+}

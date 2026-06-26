@@ -1,0 +1,122 @@
+{
+  "run_id": "654ad4a23e6c4dbb824075c1e287512c",
+  "pipeline_status": "PASS",
+  "selected_forecast_model": "poisson",
+  "gpu_challenger": {
+    "status": "SKIPPED",
+    "reason": "disabled by configuration"
+  },
+  "deterministic_plan_status": "OPTIMAL",
+  "risk_neutral_plan_status": "OPTIMAL",
+  "stochastic_plan_status": "OPTIMAL",
+  "rolling_plan_status": "OPTIMAL",
+  "deterministic_rcce": "BLOCK",
+  "risk_neutral_rcce": "BLOCK",
+  "stochastic_rcce": "BLOCK",
+  "selected_base_policy": "risk_neutral",
+  "corrective_rcce": "BLOCK",
+  "corrective_triggered": true,
+  "recommended_rcce": "BLOCK",
+  "automatic_release_allowed": false,
+  "recommendation_source": "corrective_capacity_candidate",
+  "solver_diagnostics": {
+    "deterministic": {
+      "termination_class": "OPTIMAL",
+      "status_code": 0,
+      "mip_gap": 0.0,
+      "mip_dual_bound": 8194.159710000004,
+      "max_bound_violation": 8.131355671096919e-16,
+      "max_constraint_violation": 0.0,
+      "max_integrality_violation": 1.9515253610634865e-14,
+      "objective_reconciliation_error": 0.0,
+      "fallback_used": null
+    },
+    "risk_neutral": {
+      "termination_class": "OPTIMAL",
+      "status_code": 0,
+      "mip_gap": 0.001393166128246711,
+      "mip_dual_bound": 7871.0976083333335,
+      "max_bound_violation": 0.0,
+      "max_constraint_violation": 0.0,
+      "max_integrality_violation": 0.0,
+      "objective_reconciliation_error": 1.1538767142196718e-16,
+      "fallback_used": null
+    },
+    "risk_aware": {
+      "termination_class": "OPTIMAL",
+      "status_code": 0,
+      "mip_gap": 0.0027754457178250404,
+      "mip_dual_bound": 12762.295159050997,
+      "max_bound_violation": 0.0,
+      "max_constraint_violation": 0.0,
+      "max_integrality_violation": 6.59383658785373e-12,
+      "objective_reconciliation_error": 0.0,
+      "fallback_used": null
+    },
+    "rolling": {
+      "termination_class": "OPTIMAL",
+      "status_code": 0,
+      "mip_gap": 0.0,
+      "mip_dual_bound": 7479.054177999991,
+      "max_bound_violation": 0.0,
+      "max_constraint_violation": 1.9099388737231493e-11,
+      "max_integrality_violation": 3.9968028886505635e-15,
+      "objective_reconciliation_error": 1.2160557740686676e-16,
+      "fallback_used": null
+    },
+    "recommended": {
+      "termination_class": "OPTIMAL",
+      "status_code": 0,
+      "mip_gap": 0.001393166128246711,
+      "mip_dual_bound": 7871.0976083333335,
+      "max_bound_violation": 0.0,
+      "max_constraint_violation": 0.0,
+      "max_integrality_violation": 0.0,
+      "objective_reconciliation_error": 1.1538767142196718e-16,
+      "fallback_used": null
+    }
+  },
+  "formal_sample_vss": 288.3603200000016,
+  "formal_sample_evpi": 1264.9260400000203,
+  "heldout_empirical_vss": -889.9984000000004,
+  "rolling_expected_cost_savings": 5981.273720000001,
+  "data_contract": {
+    "vehicle_types": 3,
+    "stations": 3,
+    "fleet_rows": 9,
+    "history_rows": 210
+  },
+  "optimization_scenario_contract": {
+    "scenarios": 3,
+    "routes": 227
+  },
+  "evaluation_scenario_contract": {
+    "scenarios": 6,
+    "routes": 354
+  },
+  "stage_seconds": {
+    "data_generation_and_contracts": 0.208241,
+    "forecasting": 1.832164,
+    "scenario_generation": 0.073184,
+    "optimization": 2.040688,
+    "paired_simulation_and_rcce": 2.786126,
+    "rolling_reoptimization": 0.437099,
+    "saa": 2.094628,
+    "reporting": 0.028726
+  },
+  "environment": {
+    "python": "3.11.9",
+    "platform": "Windows-10-10.0.26200-SP0",
+    "packages": {
+      "decision-aware-ev-fleet-planning": "0.7.1rc4",
+      "installed-distribution-version": "0.7.1rc4",
+      "numpy": "2.3.5",
+      "pandas": "2.2.3",
+      "scipy": "1.17.0",
+      "scikit-learn": "1.8.0"
+    },
+    "config_path": "C:\\Users\\bjw-0\\Downloads\\Amazon04_decision-aware-ev-fleet-planning\\configs\\smoke.yaml",
+    "config_sha256": "db090d7cf2226a5a712c7b7bd89572859e1e6df9afff73c5b58641d1d35b32e5"
+  },
+  "artifacts_dir": "C:\\Users\\bjw-0\\Downloads\\Amazon04_decision-aware-ev-fleet-planning\\artifacts"
+}

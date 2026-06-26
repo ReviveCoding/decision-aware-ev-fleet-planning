@@ -1,0 +1,78 @@
+{
+  "schema_version": "1.1",
+  "project_name": "decision-aware-ev-fleet-planning",
+  "qualified_version": "0.7.1rc4",
+  "candidate_source_fingerprint_excluding_qualification_manifests": "874ad075572fcb72ab6b3a1b4787dc3c720e6ba09fff00ab183065b4c82a7cd9",
+  "source_file_count_excluding_qualification_manifests": 103,
+  "qualification_profile": "STANDARD",
+  "qualified_commit": "snapshot-no-git",
+  "evidence_levels": {
+    "Q1": "PASS current workspace commands",
+    "Q2": "PASS clean source/extracted ZIP equivalent",
+    "Q3": "PASS built wheel external working directory",
+    "Q4": "NOT_EXECUTED_NO_GITHUB_REMOTE_ACCESS"
+  },
+  "environment_matrix": [
+    {
+      "os": "Linux-4.4.0-x86_64-with-glibc2.41",
+      "python": "3.13.5",
+      "architecture": "x86_64",
+      "result": "PASS_LOCAL"
+    }
+  ],
+  "test_summary": {
+    "collected": 121,
+    "passed": 121,
+    "failed": 0,
+    "skipped": 0,
+    "xfailed": 0,
+    "coverage_percent": 85,
+    "consecutive_full_suite_passes_after_final_code_change": 2
+  },
+  "runtime_gates": {
+    "cli_help": "PASS",
+    "cli_version": "PASS",
+    "canonical_qualification": "PASS",
+    "smoke_repeated": "3/3 PASS",
+    "medium": "PASS",
+    "gpu_smoke": "PASS_CPU_TORCH_PATH",
+    "api_lifecycle": "3/3 PASS",
+    "artifact_corruption": "NONZERO_FAIL_AND_RESTORE_PASS",
+    "invalid_config": "NONZERO_FAIL",
+    "reproducibility": "PASS_15_OF_15",
+    "wheel_external_smoke": "PASS",
+    "clean_source_smoke": "PASS",
+    "source_only_skip_e2e_includes_version": "PASS"
+  },
+  "problems_fixed": [
+    "added ev-fleet --version and qualification coverage",
+    "fixed qualify_local --skip-e2e so it still checks --version",
+    "updated GitHub checkout action to actions/checkout@v7",
+    "removed runtime/cache/lock/generated artifacts from release source bundle",
+    "fixed JSON-escaped Unicode staging path rewrite",
+    "added canonical local qualification script",
+    "added non-debug CLI operational error messages without traceback",
+    "included docs/scripts/tests in sdist via MANIFEST.in",
+    "cleaned qualification runtime outputs by default",
+    "excluded generated release metadata from source fingerprint to avoid self-reference"
+  ],
+  "unresolved_items": [
+    {
+      "severity": "High",
+      "item": "GitHub-hosted runner execution not performed",
+      "blocking_release_qualified": true
+    },
+    {
+      "severity": "Medium",
+      "item": "Docker and CUDA hardware execution not performed in this environment",
+      "blocking_release_qualified": false
+    },
+    {
+      "severity": "Low",
+      "item": "Static type checker not configured",
+      "blocking_release_qualified": false
+    }
+  ],
+  "final_verdict": "CONDITIONALLY_QUALIFIED",
+  "canonical_diff_sha256": "841431ccc4aad30dab1c9cbfe16d0a04b95b28fd99a81f6005b66694f2cb20b5"
+}

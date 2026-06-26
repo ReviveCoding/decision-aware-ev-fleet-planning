@@ -1,0 +1,36 @@
+{
+  "formal_sample": {
+    "scenario_count": 5,
+    "expected_value_plan_cost": 7248.8261999999995,
+    "risk_neutral_stochastic_cost": 6111.2328,
+    "wait_and_see_cost": 4432.470864,
+    "vss": 1137.5933999999997,
+    "evpi": 1678.7619359999999,
+    "vss_numerical_tolerance_violation": 0.0,
+    "evpi_numerical_tolerance_violation": 0.0,
+    "deterministic_shortage_cvar95": 9.0,
+    "risk_neutral_shortage_cvar95": 2.0,
+    "deterministic_service_rate": 0.9771722764702131,
+    "risk_neutral_service_rate": 0.990965379918489
+  },
+  "heldout_empirical": {
+    "scenario_count": 5,
+    "expected_value_plan_cost": 10725.028632000001,
+    "risk_neutral_stochastic_cost": 10794.357432,
+    "wait_and_see_cost": 5440.046015999999,
+    "vss": -69.32879999999932,
+    "evpi": 5354.311416000001,
+    "vss_numerical_tolerance_violation": -69.32879999999932,
+    "evpi_numerical_tolerance_violation": 0.0,
+    "deterministic_shortage_cvar95": 6.0,
+    "risk_neutral_shortage_cvar95": 6.0,
+    "deterministic_service_rate": 0.9589486172117228,
+    "risk_neutral_service_rate": 0.9624782589160029
+  },
+  "value_of_stochastic_solution": 1137.5933999999997,
+  "expected_value_of_perfect_information": 1678.7619359999999,
+  "heldout_empirical_vss": -69.32879999999932,
+  "heldout_evpi_estimate": 5354.311416000001,
+  "evaluation_method": "exact fixed-allocation recourse MILP with common scenario sets",
+  "interpretation": "Formal VSS/EVPI use the optimization sample and a risk-neutral stochastic plan. Held-out empirical VSS is a generalization estimate and may be negative."
+}

@@ -1,0 +1,27 @@
+services:
+  pipeline:
+    build: .
+    command: ev-fleet run --config configs/smoke.yaml
+    volumes:
+      - fleet_artifacts:/app/artifacts
+      - fleet_data:/app/data
+  api:
+    build: .
+    command: ev-fleet serve --config /app/configs/smoke.yaml --host 0.0.0.0 --port 8000
+    depends_on:
+      pipeline:
+        condition: service_completed_successfully
+    ports:
+      - "8000:8000"
+    volumes:
+      - fleet_artifacts:/app/artifacts:ro
+      - fleet_data:/app/data:ro
+    healthcheck:
+      test: ["CMD", "python", "-c", "import urllib.request; urllib.request.urlopen('http://localhost:8000/health', timeout=3)"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+volumes:
+  fleet_artifacts:
+  fleet_data:

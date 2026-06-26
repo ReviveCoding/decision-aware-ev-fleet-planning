@@ -1,0 +1,67 @@
+[build-system]
+requires = ["setuptools>=69", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "decision-aware-ev-fleet-planning"
+dynamic = ["version"]
+description = "Decision-aware EV fleet allocation, depot charging, stochastic planning, and reliability digital twin"
+readme = "README.md"
+license = "MIT"
+license-files = ["LICENSE"]
+requires-python = ">=3.11,<3.14"
+authors = [{name = "Jinwoo Bae"}]
+dependencies = [
+  "numpy>=1.26,<3",
+  "pandas>=2.1,<4",
+  "scipy>=1.12,<2",
+  "scikit-learn>=1.4,<2",
+  "PyYAML>=6.0,<7",
+  "pydantic>=2.6,<3",
+  "fastapi>=0.110,<1",
+  "uvicorn>=0.27,<1",
+]
+
+[project.optional-dependencies]
+gpu = ["torch>=2.2"]
+boosting = ["lightgbm>=4.3"]
+dashboard = ["streamlit>=1.32", "plotly>=5.20"]
+public-data = ["openpyxl>=3.1,<4"]
+dev = ["pytest>=8,<10", "httpx>=0.27,<1", "build>=1.2,<2", "ruff>=0.11,<1"]
+all = [
+  "torch>=2.2",
+  "lightgbm>=4.3",
+  "streamlit>=1.32",
+  "plotly>=5.20",
+  "openpyxl>=3.1,<4",
+  "pytest>=8,<10",
+  "httpx>=0.27,<1",
+  "build>=1.2,<2",
+  "ruff>=0.11,<1",
+]
+
+[project.scripts]
+ev-fleet = "ev_fleet.cli:main"
+
+
+[tool.setuptools.dynamic]
+version = {attr = "ev_fleet._version.__version__"}
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.setuptools.package-data]
+ev_fleet = ["sql/**/*.sql"]
+
+[tool.pytest.ini_options]
+pythonpath = ["src"]
+testpaths = ["tests"]
+addopts = "-q"
+
+[tool.ruff]
+target-version = "py311"
+line-length = 120
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "B", "UP"]
+ignore = ["E501"]

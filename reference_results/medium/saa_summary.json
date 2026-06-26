@@ -1,0 +1,18 @@
+{
+  "scenario_sizes": [
+    {
+      "scenario_size": 3,
+      "mean_out_of_sample_cost": 9536.225936666668,
+      "std_out_of_sample_cost": 2128.7306387787135,
+      "mean_shortage_cvar95": 15.5,
+      "max_allocation_std": 4.242640687119285
+    },
+    {
+      "scenario_size": 5,
+      "mean_out_of_sample_cost": 7992.098751666666,
+      "std_out_of_sample_cost": 52.45714789746152,
+      "mean_shortage_cvar95": 12.0,
+      "max_allocation_std": 3.5355339059327378
+    }
+  ]
+}

@@ -1,0 +1,268 @@
+{
+  "project_name": "decision-aware-ev-fleet-planning",
+  "baseline_source_fingerprint": "cd2b0213ee244455a6e8e966abac764fcbebc6f49c3940ecf98cd07568f6c6cb",
+  "diff_checksum": "841431ccc4aad30dab1c9cbfe16d0a04b95b28fd99a81f6005b66694f2cb20b5",
+  "supported_environment_claims": [
+    {
+      "environment": "Linux Python 3.13.5",
+      "status": "executed",
+      "evidence_level": "E3"
+    },
+    {
+      "environment": "source checkout without package installation",
+      "status": "executed",
+      "evidence_level": "E3"
+    },
+    {
+      "environment": "isolated wheel in external working directory",
+      "status": "executed",
+      "evidence_level": "E3"
+    },
+    {
+      "environment": "Ubuntu Python 3.11/3.13 and Windows Python 3.11 GitHub Actions",
+      "status": "configured-not-hosted-executed",
+      "evidence_level": "E1"
+    },
+    {
+      "environment": "Docker Compose",
+      "status": "configured-not-locally-executed",
+      "evidence_level": "E1"
+    },
+    {
+      "environment": "CUDA GPU",
+      "status": "not-executed",
+      "evidence_level": "E0"
+    }
+  ],
+  "required_entrypoints": [
+    "ev-fleet --version",
+    "ev-fleet run --config configs/smoke.yaml",
+    "ev-fleet validate --config configs/smoke.yaml",
+    "ev-fleet train-gpu --config configs/gpu-smoke.yaml",
+    "ev-fleet serve --config configs/smoke.yaml --host 127.0.0.1 --port 8000",
+    "ev-fleet export-reference --config configs/smoke.yaml",
+    "ev-fleet handoff --evidence docs/release_candidate_evidence.json --artifact <artifact> --output release_candidate_handoff.json"
+  ],
+  "datasets": [
+    {
+      "name": "bundled fleet planning fixture",
+      "type": "deterministic synthetic",
+      "purpose": "correctness, integration, policy and failure replay"
+    },
+    {
+      "name": "Amazon route/package adapter",
+      "type": "optional public-data calibration",
+      "bundled": false
+    },
+    {
+      "name": "NLR operations/charging adapters",
+      "type": "optional public-data calibration",
+      "bundled": false
+    }
+  ],
+  "baseline_metrics": {
+    "tests_collected": 110,
+    "source_only_tests_passed": 109,
+    "source_only_tests_failed": 1,
+    "installed_tests_passed": 110,
+    "source_coverage_percent": 85,
+    "smoke_elapsed_seconds": 5.53,
+    "medium_elapsed_seconds": 12.07,
+    "gpu_smoke_elapsed_seconds": 10.38,
+    "smoke": {
+      "forecast": "seasonal_naive",
+      "base_policy": "risk_neutral",
+      "formal_vss": 741.6550799999986,
+      "formal_evpi": 340.72272000000703,
+      "heldout_vss": 738.1041600000008,
+      "rcce": "RELEASE"
+    },
+    "medium": {
+      "forecast": "poisson",
+      "base_policy": "deterministic",
+      "formal_vss": 605.5676159999994,
+      "formal_evpi": 2055.2958719999997,
+      "heldout_vss": -408.85977599999933,
+      "rcce": "RELEASE"
+    },
+    "gpu": {
+      "status": "PASS",
+      "device": "cpu",
+      "selected_model": "seasonal_naive",
+      "p90_coverage": 0.8809523809523809
+    }
+  },
+  "final_metrics": {
+    "tests_collected": 121,
+    "tests_passed": 121,
+    "tests_failed": 0,
+    "tests_skipped": 0,
+    "source_coverage_percent": 85,
+    "smoke_elapsed_seconds": 6.83,
+    "medium_elapsed_seconds": 12.49,
+    "gpu_smoke_elapsed_seconds": 12.14,
+    "smoke": {
+      "forecast": "seasonal_naive",
+      "base_policy": "risk_neutral",
+      "formal_vss": 741.6550799999986,
+      "formal_evpi": 340.72272000000703,
+      "heldout_vss": 738.1041600000008,
+      "rcce": "RELEASE"
+    },
+    "medium": {
+      "forecast": "poisson",
+      "base_policy": "deterministic",
+      "formal_vss": 605.5676159999994,
+      "formal_evpi": 2055.2958719999997,
+      "heldout_vss": -408.85977599999933,
+      "rcce": "RELEASE"
+    },
+    "gpu": {
+      "status": "PASS",
+      "device": "cpu",
+      "selected_model": "seasonal_naive",
+      "p90_coverage": 0.8809523809523809,
+      "promoted": false
+    },
+    "api_service_smoke": "PASS 3/3",
+    "semantic_reproducibility": "PASS 15/15",
+    "source_only": "PASS",
+    "isolated_wheel": "PASS",
+    "cli_version": "PASS",
+    "source_only_skip_e2e_includes_version": "PASS"
+  },
+  "metric_gates": {
+    "tests_failed": {
+      "operator": "==",
+      "value": 0
+    },
+    "source_coverage_percent": {
+      "operator": ">=",
+      "value": 85
+    },
+    "science_metric_absolute_tolerance": 1e-06,
+    "smoke_pipeline_status": "PASS",
+    "medium_pipeline_status": "PASS",
+    "gpu_challenger_status": "PASS",
+    "smoke_recommended_rcce": "RELEASE",
+    "medium_recommended_rcce": "RELEASE",
+    "runtime_regression_tolerance_ratio": 1.5
+  },
+  "command_evidence": [
+    {
+      "command": "PYTHONPATH=src python -m pytest -q",
+      "exit_code": 0,
+      "result": "121 passed",
+      "evidence_level": "E3"
+    },
+    {
+      "command": "ruff check . && ruff format --check .",
+      "exit_code": 0,
+      "result": "PASS",
+      "evidence_level": "E3"
+    },
+    {
+      "command": "python -m compileall -q src tests scripts dashboard",
+      "exit_code": 0,
+      "result": "PASS",
+      "evidence_level": "E3"
+    },
+    {
+      "command": "ev-fleet run --config configs/smoke.yaml && ev-fleet validate --config configs/smoke.yaml",
+      "exit_code": 0,
+      "result": "PASS",
+      "evidence_level": "E2"
+    },
+    {
+      "command": "ev-fleet run --config configs/medium.yaml && ev-fleet validate --config configs/medium.yaml",
+      "exit_code": 0,
+      "result": "PASS",
+      "evidence_level": "E2"
+    },
+    {
+      "command": "ev-fleet train-gpu --config configs/gpu-smoke.yaml && ev-fleet validate --config configs/gpu-smoke.yaml",
+      "exit_code": 0,
+      "result": "PASS on CPU",
+      "evidence_level": "E2"
+    },
+    {
+      "command": "python scripts/check_reproducibility.py --config configs/smoke.yaml",
+      "exit_code": 0,
+      "result": "15/15 semantic artifacts matched",
+      "evidence_level": "E2"
+    },
+    {
+      "command": "ev-fleet serve ...; GET /health,/plans/latest,/plans/latest/reliability,/runs/latest",
+      "exit_code": 0,
+      "result": "HTTP 200",
+      "evidence_level": "E2"
+    },
+    {
+      "command": "python -m build",
+      "exit_code": 0,
+      "result": "wheel and sdist built",
+      "evidence_level": "E3"
+    },
+    {
+      "command": "isolated wheel install; pip check; external-CWD smoke and validate",
+      "exit_code": 0,
+      "result": "PASS",
+      "evidence_level": "E3"
+    },
+    {
+      "command": "python scripts/qualify_local.py --timeout-seconds 90",
+      "exit_code": 0,
+      "result": "PASS; runtime outputs cleaned by default",
+      "evidence_level": "E2"
+    },
+    {
+      "command": "python -m pytest -q tests/test_engineering.py -k source_fingerprint_excludes_generated_release_metadata",
+      "exit_code": 0,
+      "result": "PASS generated release metadata excluded from source fingerprint",
+      "evidence_level": "E2"
+    }
+  ],
+  "known_limitations": [
+    "Hosted GitHub Actions were configured but not executed from this local environment.",
+    "Docker CLI was unavailable, so Compose and image runtime remain unverified locally.",
+    "CUDA was unavailable; GPU-smoke executed on CPU.",
+    "Static type checking is not configured.",
+    "The full research profile was not executed.",
+    "Bundled data are synthetic or public-data-informed proxy data and do not establish production business impact."
+  ],
+  "unresolved_items": [
+    {
+      "item": "GitHub-hosted Ubuntu/Windows qualification",
+      "severity": "High",
+      "reason": "requires external hosted runner",
+      "release_blocker": false
+    },
+    {
+      "item": "Docker/Compose runtime qualification",
+      "severity": "Medium",
+      "reason": "Docker unavailable locally",
+      "release_blocker": false
+    },
+    {
+      "item": "CUDA qualification",
+      "severity": "Medium",
+      "reason": "CUDA unavailable",
+      "release_blocker": false
+    },
+    {
+      "item": "Static type checker",
+      "severity": "Low",
+      "reason": "not configured; runtime/contracts/tests are primary current gate",
+      "release_blocker": false
+    }
+  ],
+  "evidence_level": "E3 for clean source and isolated wheel; E2 for local runtime profiles/API; E1 for hosted CI and Docker configuration",
+  "next_qualification_gates": [
+    "Run the exact candidate commit on GitHub-hosted Ubuntu Python 3.11/3.13 and Windows Python 3.11.",
+    "Build and start Docker Compose; verify pipeline completion, read-only API volumes, and healthcheck.",
+    "Execute CUDA GPU-smoke on the stated RTX/CUDA environment.",
+    "Verify artifact and handoff SHA-256 after transfer.",
+    "Do not label RELEASE QUALIFIED until the dedicated qualification gates pass."
+  ],
+  "diff_scope": "Canonical unified diff from v0.7.0 clean snapshot to candidate source before generated release evidence and external handoff. Final rc4 adds default runtime-output cleanup to the canonical local qualification script."
+}

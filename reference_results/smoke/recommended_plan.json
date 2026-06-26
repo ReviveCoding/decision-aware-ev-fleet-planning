@@ -1,0 +1,178 @@
+{
+  "name": "stochastic_risk_neutral_resilience_q75_r1",
+  "status": "CORRECTIVE_CANDIDATE",
+  "objective": 18368.078653333334,
+  "allocation": [
+    {
+      "station_id": "STN_01",
+      "vehicle_type": "compact_ev",
+      "initial_count": 7,
+      "planned_count": 8,
+      "inbound": 0,
+      "outbound": 0,
+      "temporary_addition": 1
+    },
+    {
+      "station_id": "STN_01",
+      "vehicle_type": "delivery_ev",
+      "initial_count": 13,
+      "planned_count": 16,
+      "inbound": 1,
+      "outbound": 0,
+      "temporary_addition": 2
+    },
+    {
+      "station_id": "STN_01",
+      "vehicle_type": "large_ev",
+      "initial_count": 4,
+      "planned_count": 6,
+      "inbound": 2,
+      "outbound": 0,
+      "temporary_addition": 0
+    },
+    {
+      "station_id": "STN_02",
+      "vehicle_type": "compact_ev",
+      "initial_count": 9,
+      "planned_count": 10,
+      "inbound": 0,
+      "outbound": 0,
+      "temporary_addition": 1
+    },
+    {
+      "station_id": "STN_02",
+      "vehicle_type": "delivery_ev",
+      "initial_count": 17,
+      "planned_count": 19,
+      "inbound": 0,
+      "outbound": 2,
+      "temporary_addition": 4
+    },
+    {
+      "station_id": "STN_02",
+      "vehicle_type": "large_ev",
+      "initial_count": 6,
+      "planned_count": 9,
+      "inbound": 0,
+      "outbound": 0,
+      "temporary_addition": 3
+    },
+    {
+      "station_id": "STN_03",
+      "vehicle_type": "compact_ev",
+      "initial_count": 11,
+      "planned_count": 12,
+      "inbound": 0,
+      "outbound": 0,
+      "temporary_addition": 1
+    },
+    {
+      "station_id": "STN_03",
+      "vehicle_type": "delivery_ev",
+      "initial_count": 21,
+      "planned_count": 26,
+      "inbound": 1,
+      "outbound": 0,
+      "temporary_addition": 4
+    },
+    {
+      "station_id": "STN_03",
+      "vehicle_type": "large_ev",
+      "initial_count": 7,
+      "planned_count": 8,
+      "inbound": 0,
+      "outbound": 2,
+      "temporary_addition": 3
+    }
+  ],
+  "moves": [
+    {
+      "from_station": "STN_02",
+      "to_station": "STN_01",
+      "vehicle_type": "delivery_ev",
+      "count": 1
+    },
+    {
+      "from_station": "STN_02",
+      "to_station": "STN_03",
+      "vehicle_type": "delivery_ev",
+      "count": 1
+    },
+    {
+      "from_station": "STN_03",
+      "to_station": "STN_01",
+      "vehicle_type": "large_ev",
+      "count": 2
+    }
+  ],
+  "scenario_metrics": [
+    {
+      "scenario_id": 0,
+      "routes": 76,
+      "unserved_routes": 0,
+      "critical_unserved": 0,
+      "emergency_leases": 2,
+      "charge_energy_slack_kwh": 0.0,
+      "variable_operating_cost": 1945.85708
+    },
+    {
+      "scenario_id": 1,
+      "routes": 67,
+      "unserved_routes": 2,
+      "critical_unserved": 0,
+      "emergency_leases": 2,
+      "charge_energy_slack_kwh": 0.0,
+      "variable_operating_cost": 1721.0835599999998
+    },
+    {
+      "scenario_id": 2,
+      "routes": 84,
+      "unserved_routes": 8,
+      "critical_unserved": 0,
+      "emergency_leases": 7,
+      "charge_energy_slack_kwh": 0.0,
+      "variable_operating_cost": 1949.2953200000002
+    }
+  ],
+  "solver": {
+    "success": true,
+    "status_code": 0,
+    "message": "Optimization terminated successfully. (HiGHS Status 7: Optimal)",
+    "termination_class": "OPTIMAL",
+    "runtime_seconds": 0.20335,
+    "mip_gap": 0.001393166128246711,
+    "mip_node_count": 1,
+    "mip_dual_bound": 7871.0976083333335,
+    "solver_backend": "scipy.optimize.milp (HiGHS)",
+    "degraded_mode": false,
+    "finite_solution": true,
+    "max_bound_violation": 0.0,
+    "max_constraint_violation": 0.0,
+    "max_integrality_violation": 0.0,
+    "objective_reconciliation_error": 1.1538767142196718e-16,
+    "recomputed_objective": 7882.078653333332,
+    "deterministic_workload": null,
+    "allow_redeployment": true,
+    "risk_weight": 0.0,
+    "corrective_action": "simulation_shortage_quantile",
+    "shortage_quantile": 0.75,
+    "global_tail_margin": 15,
+    "temporary_additions": 19,
+    "new_temporary_additions": 19,
+    "unmet_capacity_due_to_parking": 0,
+    "temporary_charging_capacity_kwh": {
+      "STN_01": 163.0,
+      "STN_02": 6.0,
+      "STN_03": 499.0
+    },
+    "new_temporary_charging_capacity_kwh": {
+      "STN_01": 163.0,
+      "STN_02": 6.0,
+      "STN_03": 499.0
+    },
+    "unmet_charging_capacity_due_to_limit_kwh": 0.0,
+    "route_split_factor": 0.9365443425076453,
+    "route_split_program_cost": 600.0,
+    "minimality_claim": "No exact global minimality claim; candidate requires independent paired replay"
+  }
+}
