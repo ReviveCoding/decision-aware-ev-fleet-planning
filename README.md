@@ -134,51 +134,16 @@ The medium profile deliberately reports a different conclusion: formal VSS is po
 
 See `reference_results/smoke/` and `reference_results/medium/` for compact, sanitized, checksummed evidence.
 
-## v0.5.0 operational hardening retained
+## Reliability and release controls
 
-- one project-wide OS advisory writer lock prevents cross-profile recovery races;
-- promotion journals and JSON/CSV/text writes use atomic temporary-file replacement with cleanup on failure;
-- interrupted promotions accept untouched later directories and restore only paths that were actually swapped;
-- compact reference exports preserve the prior snapshot when replacement fails;
-- configuration loading is side-effect free and numeric fields reject booleans, nulls, NaN, infinity, and fractional counts where integers are required;
-- runtime and reference targets cannot overlap source code, tests, configs, reports, calibration inputs, or existing generated/artifact trees;
-- `train-gpu` now runs the full transactional forecast-to-decision pipeline instead of mutating an already signed artifact directory;
-- redundant script entry points that bypassed the CLI safety contract were removed;
-- Docker build context exclusions and a version-neutral runtime constraints file reduce packaging drift and build overhead.
+- **State consistency:** Atomic writes, advisory writer locks, and recovery journals protect run outputs and reference exports during interrupted updates.
+- **Numerical validation:** Solver results include termination status, bounds, MIP gap, and feasibility residuals. Inconsistent or invalid solutions cannot pass the decision gate.
+- **Evaluation:** Forecast uncertainty uses time-ordered data splits and one-sided conformal corrections. Paired policy comparisons require matching scenario and run identities.
+- **Artifact integrity:** Run-specific manifests cover generated data, checksums, and cross-artifact consistency. API and dashboard reads validate the same run identity.
+- **Planner overrides:** Overrides are reviewed separately from the base plan, do not silently persist, and cannot inherit numerical guarantees that were not recomputed.
+- **Portability:** Clean-checkout qualification, CLI entry points, and isolated generated-output directories reduce source-tree contamination.
 
-## v0.6.0 scientific and release hardening
-
-- solver results now record termination class, runtime, dual bound, MIP gap, bound/constraint/integrality residuals, and objective reconciliation error;
-- numerically invalid or status-inconsistent incumbents are degraded and hard-blocked by RCCE;
-- deterministic expected-value route construction preserves observed joint cube/distance/energy profiles instead of combining independent quantiles;
-- rolling and paired comparisons reject missing or mismatched scenario/run keys and verify fleet conservation;
-- run summary, artifact manifest, generated-data manifest, API reads, and override replay are bound by one `run_id`;
-- structural fallback diagnostics report impossible routes, vehicle lower-bound deficits, charging deficits, and parking excess without falsely claiming an exact IIS;
-- classical and Transformer uncertainty use temporal fit/calibration/validation splits with one-sided conformal corrections and configurable target coverage;
-- semantic reproducibility excludes wall-clock fields while still detecting changes to scientific metrics and decisions;
-- negative overrides can only withdraw existing temporary capacity, and override candidates retain the inherited solver-release contract;
-- executive reports expose the exact solver evidence used by the release gate.
-
-
-## v0.7.0 artifact and planner-governance hardening
-
-- artifact and generated-data manifests now carry an explicit schema version and reject untracked files or symlinks, so a signed run represents the complete directory inventory rather than a subset;
-- planner overrides are always independent, non-persistent `REVIEW` decisions requiring human approval, and inherited numerical solver evidence is labeled as applying only to the base plan;
-- one API request uses one immutable configuration snapshot instead of reloading paths after readiness validation;
-- artifact runtime paths cannot be placed under arbitrary `data/` subdirectories; only explicitly named `generated*` data directories are eligible for destructive cleanup;
-- dashboard reads verify manifest hashes, run identity, and cross-artifact semantic consistency before rendering;
-- compact reference export now requires the full repository validation contract, including generated-data integrity and semantic policy consistency;
-- the full local suite contains 114 tests with 85% source coverage; optimization and simulation coverage are both 97%, forecasting 90%, and RCCE reliability 100%.
-
-## v0.7.1rc4 candidate-handoff hardening
-
-- subprocess-based lock recovery tests now work from a clean source checkout without editable installation;
-- GitHub Actions includes a source-checkout job that installs dependencies only and tests `PYTHONPATH=src`;
-- public-data ingest rejects no-op invocation and incomplete Amazon route/package pairs;
-- `ev-fleet handoff` produces a checksummed, machine-readable candidate manifest;
-- `docs/improvement_report.md` and `docs/known_limitations.md` separate executed evidence from follow-up qualification.
-
-The candidate handoff is intentionally labeled `RELEASE_CANDIDATE_ONLY`. Hosted CI, Docker, Windows, and CUDA claims require the separate qualification stage.
+The checksummed candidate handoff is labeled `RELEASE_CANDIDATE_ONLY`. Hosted CI, Docker, Windows, and CUDA results require their own qualification evidence. See [release notes](RELEASE_NOTES.md) and [qualification records](docs/release_qualification.md) for version-specific details.
 
 ## Final local qualification
 
