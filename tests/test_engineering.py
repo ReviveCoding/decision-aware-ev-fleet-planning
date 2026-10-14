@@ -672,7 +672,7 @@ def test_staged_path_rewrite_handles_json_escaped_unicode_paths(tmp_path, cfg):
     from ev_fleet.config import ProjectConfig
     from ev_fleet.maintenance import _rewrite_staged_text_files
 
-    project_root = tmp_path / "프로젝트 root"
+    project_root = tmp_path / "\ud504\ub85c\uc81d\ud2b8 root"
     staged_root = project_root / ".ev_fleet_staging" / "abc123"
     staged_artifacts = staged_root / "artifacts"
     staged_generated = staged_root / "generated"
