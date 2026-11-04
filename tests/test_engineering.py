@@ -653,6 +653,8 @@ def test_failed_staged_pipeline_preserves_last_known_good(cfg, pipeline_summary,
 
     summary_path = cfg.artifacts_dir / "run_summary.json"
     before = hashlib.sha256(summary_path.read_bytes()).hexdigest()
+    staging_parent = cfg.project_root / ".ev_fleet_staging"
+    existing_staging = set(staging_parent.glob("*"))
 
     def fail_after_partial_write(staged_cfg):
         (staged_cfg.artifacts_dir / "partial.txt").write_text("partial", encoding="utf-8")
@@ -665,7 +667,7 @@ def test_failed_staged_pipeline_preserves_last_known_good(cfg, pipeline_summary,
     after = hashlib.sha256(summary_path.read_bytes()).hexdigest()
     assert after == before
     assert not (cfg.artifacts_dir / "partial.txt").exists()
-    assert not any((cfg.project_root / ".ev_fleet_staging").glob("*"))
+    assert set(staging_parent.glob("*")) <= existing_staging
 
 
 def test_staged_path_rewrite_handles_json_escaped_unicode_paths(tmp_path, cfg):
