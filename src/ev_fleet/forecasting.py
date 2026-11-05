@@ -249,31 +249,38 @@ def _build_next_day_features(all_df: pd.DataFrame, feature_cols: list[str]) -> p
     """Create one-day-ahead rows using only observed history and known calendar inputs."""
     next_date = all_df["date"].max() + pd.Timedelta(days=1)
     latest = all_df.sort_values("date").groupby("station_id").tail(1).copy()
+    histories_by_station = {
+        station: history.sort_values("date") for station, history in all_df.groupby("station_id", sort=False)
+    }
     next_rows = []
     station_columns = [column for column in feature_cols if column.startswith("station_")]
     for _, row in latest.iterrows():
-        hist = all_df[all_df["station_id"] == row["station_id"]].sort_values("date")
+        hist = histories_by_station[row["station_id"]]
         if len(hist) < 7:
             raise ValueError(f"At least seven observations are required for station {row['station_id']}")
         new = row.copy()
+        last_observation = hist.iloc[-1]
         new["date"] = next_date
         new["day_of_week"] = next_date.dayofweek
         new["dow_sin"] = np.sin(2 * np.pi * next_date.dayofweek / 7.0)
         new["dow_cos"] = np.cos(2 * np.pi * next_date.dayofweek / 7.0)
-        new["route_count_lag_1"] = float(hist.iloc[-1]["route_count"])
+        new["route_count_lag_1"] = float(last_observation["route_count"])
         new["route_count_lag_7"] = float(hist.iloc[-7]["route_count"])
         new["route_count_rolling_7"] = float(hist.tail(7)["route_count"].mean())
-        new["avg_cube_lag_1"] = float(hist.iloc[-1]["avg_cube"])
-        new["avg_distance_miles_lag_1"] = float(hist.iloc[-1]["avg_distance_miles"])
-        new["avg_route_energy_kwh_lag_1"] = float(hist.iloc[-1]["avg_route_energy_kwh"])
+        new["avg_cube_lag_1"] = float(last_observation["avg_cube"])
+        new["avg_distance_miles_lag_1"] = float(last_observation["avg_distance_miles"])
+        new["avg_route_energy_kwh_lag_1"] = float(last_observation["avg_route_energy_kwh"])
         new["cold_regime"] = float(next_date.month in (1, 2, 12))
         # Capacity events are future-known inputs. In the absence of a supplied schedule,
         # do not carry a transient event forward from the last observed date.
         new["capacity_event"] = 0.0
-        for column in station_columns:
-            new[column] = 1.0 if column == f"station_{row['station_id']}" else 0.0
         next_rows.append(new)
-    return pd.DataFrame(next_rows)
+    result = pd.DataFrame(next_rows)
+    if next_rows:
+        station_names = np.array([f"station_{value}" for value in result["station_id"]])
+        for column in station_columns:
+            result[column] = (station_names == column).astype(float)
+    return result
 
 
 def _fit_predict_models(train: pd.DataFrame, test: pd.DataFrame, feature_cols: list[str], cfg: ProjectConfig):
